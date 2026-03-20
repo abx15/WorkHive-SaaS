@@ -1,0 +1,204 @@
+﻿
+> workhive-app@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.2.0 (Turbopack)
+- Environments: .env
+
+node.exe : ΓÜá The 
+"middleware" file 
+convention is 
+deprecated. Please 
+use "proxy" instead. 
+Learn more: https://ne
+xtjs.org/docs/messages
+/middleware-to-proxy
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\arunk\AppData\Roa
+ming\ ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (ΓÜá The "m   
+ iddle...leware-to    
+-proxy:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack 
+build failed with 2 
+errors:
+./app/login/page.tsx:1
+3:1
+Module not found: 
+Can't resolve 
+'@/components/ui/form'
+  [90m11 |[0m ... 
+[33mCard[0m, 
+[33mCardContent[0m, 
+[33mCardDescription[
+0m, 
+[33mCardFooter[0m, 
+[33mCardHeader[0m, 
+[33mCardTitle[0m } 
+[36mfrom[0m 
+[32m"@/compon...[0m
+  [90m12 |[0m ... 
+[33mInput[0m } 
+[36mfrom[0m [32m"@/
+components/ui/input"[
+0m;
+[31m[1m>[0m 
+[90m13 |[0m ... 
+[33mForm[0m, 
+[33mFormControl[0m, 
+[33mFormField[0m, 
+[33mFormItem[0m, 
+[33mFormLabel[0m, 
+[33mFormMessage[0m 
+} [36mfrom[0m [32m"
+@/components/ui...[0m
+  [90m   |[0m    [3
+1m[1m^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^[0m
+  [90m14 |[0m ... 
+[33mAlertCircle[0m 
+} [36mfrom[0m [32m"
+lucide-react"[0m;
+  [90m15 |[0m ...
+  [90m16 |[0m 
+...rmSchema = 
+z.object({
+
+Import map: aliased 
+to relative './compone
+nts/ui/form' inside 
+of [project]/
+
+
+Import traces:
+  Client Component 
+Browser:
+    
+./app/login/page.tsx 
+[Client Component 
+Browser]
+    
+./app/login/page.tsx 
+[Server Component]
+
+  Client Component 
+SSR:
+    
+./app/login/page.tsx 
+[Client Component SSR]
+    
+./app/login/page.tsx 
+[Server Component]
+
+https://nextjs.org/doc
+s/messages/module-not-
+found
+
+
+./app/register/page.ts
+x:12:1
+Module not found: 
+Can't resolve 
+'@/components/ui/form'
+  [90m10 |[0m ... 
+[33mCard[0m, 
+[33mCardContent[0m, 
+[33mCardDescription[
+0m, 
+[33mCardFooter[0m, 
+[33mCardHeader[0m, 
+[33mCardTitle[0m } 
+[36mfrom[0m 
+[32m"@/compon...[0m
+  [90m11 |[0m ... 
+[33mInput[0m } 
+[36mfrom[0m [32m"@/
+components/ui/input"[
+0m;
+[31m[1m>[0m 
+[90m12 |[0m ... 
+[33mForm[0m, 
+[33mFormControl[0m, 
+[33mFormField[0m, 
+[33mFormItem[0m, 
+[33mFormLabel[0m, 
+[33mFormMessage[0m 
+} [36mfrom[0m [32m"
+@/components/ui...[0m
+  [90m   |[0m    [3
+1m[1m^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^[0m
+  [90m13 |[0m ... 
+[33mAlertCircle[0m 
+} [36mfrom[0m [32m"
+lucide-react"[0m;
+  [90m14 |[0m ...
+  [90m15 |[0m 
+...rmSchema = 
+z.object({
+
+Import map: aliased 
+to relative './compone
+nts/ui/form' inside 
+of [project]/
+
+
+Import traces:
+  Client Component 
+Browser:
+    ./app/register/pag
+e.tsx [Client 
+Component Browser]
+    ./app/register/pag
+e.tsx [Server 
+Component]
+
+  Client Component 
+SSR:
+    ./app/register/pag
+e.tsx [Client 
+Component SSR]
+    ./app/register/pag
+e.tsx [Server 
+Component]
+
+https://nextjs.org/doc
+s/messages/module-not-
+found
+
+
+    at <unknown> (./ap
+p/login/page.tsx:13:1)
+    at <unknown> (http
+s://nextjs.org/docs/me
+ssages/module-not-foun
+d)
+    at <unknown> (./ap
+p/register/page.tsx:12
+:1)
+    at <unknown> (http
+s://nextjs.org/docs/me
+ssages/module-not-foun
+d)

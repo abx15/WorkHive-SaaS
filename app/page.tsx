@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -31,16 +33,12 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button size="lg" className="h-14 px-8 text-lg font-medium w-full sm:w-auto" asChild>
-              <Link href="/dashboard">
-                Get Started <ArrowRight className="ml-2 size-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8 text-lg font-medium w-full sm:w-auto" asChild>
-              <Link href="/demo">
-                View Demo
-              </Link>
-            </Button>
+            <Link href="/dashboard" className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg font-medium w-full sm:w-auto" })}>
+              Get Started <ArrowRight className="ml-2 size-5" />
+            </Link>
+            <Link href="/demo" className={buttonVariants({ size: "lg", variant: "outline", className: "h-14 px-8 text-lg font-medium w-full sm:w-auto" })}>
+              View Demo
+            </Link>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 pt-10 text-sm text-muted-foreground">

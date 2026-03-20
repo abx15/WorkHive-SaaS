@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { useSession, signOut } from "next-auth/react";
 
 export function Navbar() {
+  const { data: session } = useSession();
+
   return (
     <nav className="border-b bg-card">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
@@ -12,12 +17,19 @@ export function Navbar() {
           <span className="font-bold text-xl tracking-tight">WorkHive</span>
         </Link>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" asChild>
-            <Link href="/login">Log in</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Sign up</Link>
-          </Button>
+          {session ? (
+            <>
+              <Link href="/dashboard" className={buttonVariants({ variant: "ghost" })}>Dashboard</Link>
+              <Button variant="outline" onClick={() => signOut({ callbackUrl: '/' })}>
+                Log out
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link href="/login" className={buttonVariants({ variant: "ghost" })}>Log in</Link>
+              <Link href="/register" className={buttonVariants({ variant: "default" })}>Sign up</Link>
+            </>
+          )}
         </div>
       </div>
     </nav>

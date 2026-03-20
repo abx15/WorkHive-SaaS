@@ -1,0 +1,22 @@
+
+> workhive-app@0.1.0 build
+> next build
+
+▲ Next.js 16.2.0 (Turbopack)
+- Environments: .env
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.7s
+  Running TypeScript ...
+  Finished TypeScript in 4.1s ...
+  Collecting page data using 10 workers ...
+  Generating static pages using 10 workers (0/8) ...
+Error occurred prerendering page "/_not-found". Read more: https://nextjs.org/docs/messages/prerender-error
+Error: Attempted to call buttonVariants() from the server but buttonVariants is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+    at <unknown> (C:\Users\arunk\Desktop\NextJs-FullStackProjects\SasS\.next\server\chunks\ssr\_0mg_v5o._.js:1:2846)
+    at <unknown> (C:\Users\arunk\Desktop\NextJs-FullStackProjects\SasS\.next\server\chunks\ssr\_0mg_v5o._.js:1:4041)
+    at stringify (<anonymous>) {
+  digest: '1210978140'
+}
+Export encountered an error on /_not-found/page: /_not-found, exiting the build.
+⨯ Next.js build worker exited with code: 1 and signal: null
