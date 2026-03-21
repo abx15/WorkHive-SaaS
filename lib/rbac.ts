@@ -21,6 +21,7 @@ export const PERMISSIONS = {
   // Project permissions
   CREATE_PROJECTS: 'CREATE_PROJECTS',
   EDIT_PROJECTS: 'EDIT_PROJECTS',
+  DELETE_PROJECTS: 'DELETE_PROJECTS',
   VIEW_PROJECTS: 'VIEW_PROJECTS',
   
   // Task permissions
@@ -38,6 +39,7 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
     PERMISSIONS.MANAGE_BILLING,
     PERMISSIONS.CREATE_PROJECTS,
     PERMISSIONS.EDIT_PROJECTS,
+    PERMISSIONS.DELETE_PROJECTS,
     PERMISSIONS.VIEW_PROJECTS,
     PERMISSIONS.MANAGE_TASKS,
     PERMISSIONS.VIEW_ASSIGNED_TASKS,
@@ -46,6 +48,7 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
   MANAGER: [
     PERMISSIONS.CREATE_PROJECTS,
     PERMISSIONS.EDIT_PROJECTS,
+    PERMISSIONS.DELETE_PROJECTS,
     PERMISSIONS.VIEW_PROJECTS,
     PERMISSIONS.MANAGE_TASKS,
     PERMISSIONS.VIEW_ASSIGNED_TASKS,
@@ -89,6 +92,10 @@ export function canCreateProjects(userRole: Role): boolean {
 
 export function canEditProjects(userRole: Role): boolean {
   return hasPermission(userRole, PERMISSIONS.EDIT_PROJECTS);
+}
+
+export function canDeleteProjects(userRole: Role): boolean {
+  return hasPermission(userRole, PERMISSIONS.DELETE_PROJECTS);
 }
 
 export function canViewProjects(userRole: Role): boolean {
