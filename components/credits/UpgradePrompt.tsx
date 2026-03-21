@@ -45,7 +45,7 @@ export function UpgradePrompt({
     },
     PRO: {
       name: 'Pro Plan',
-      price: '$29/month',
+      price: '$9.99/month',
       credits: '1,000 credits/month',
       dailyLimit: '50 actions/day',
       features: [
@@ -58,6 +58,28 @@ export function UpgradePrompt({
       ],
       icon: Crown,
       color: 'bg-gradient-to-r from-purple-500 to-pink-500'
+    }
+  };
+
+  const handleUpgrade = async () => {
+    try {
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ plan: 'PRO' }),
+      });
+
+      const data = await response.json();
+      
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Failed to create checkout session:', data.error);
+      }
+    } catch (error) {
+      console.error('Error during checkout:', error);
     }
   };
 
@@ -159,7 +181,7 @@ export function UpgradePrompt({
             Maybe Later
           </Button>
           <Button 
-            onClick={onUpgrade}
+            onClick={handleUpgrade}
             className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600"
           >
             Upgrade to Pro
