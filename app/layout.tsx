@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "WorkHive | Multi-tenant SaaS Platform",
-  description: "WorkHive is a modern multi-tenant SaaS platform.",
+  description: "WorkHive is a modern multi-tenant SaaS platform where teams can create workspaces, manage projects, and collaborate efficiently.",
 };
 
 import { Providers } from "@/components/Providers";
@@ -27,10 +29,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>{children}</Providers>
+          <Toaster
+            position="top-right"
+            expand={false}
+            richColors
+            closeButton
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useSession, signOut } from "next-auth/react";
 import { WorkspaceSwitcher } from "./workspace/WorkspaceSwitcher";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar({ showSwitcher }: { showSwitcher?: boolean }) {
   const { data: session } = useSession();
@@ -21,6 +22,7 @@ export function Navbar({ showSwitcher }: { showSwitcher?: boolean }) {
           {showSwitcher && <WorkspaceSwitcher />}
         </div>
         <div className="flex items-center gap-4">
+          <ThemeToggle />
           {session ? (
             <>
               <Link href="/dashboard" className={buttonVariants({ variant: "ghost" })}>Dashboard</Link>
