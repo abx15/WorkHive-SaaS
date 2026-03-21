@@ -1,7 +1,11 @@
+"use client";
+
+import { Navbar } from "@/components/Navbar";
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Check, Star, Crown, Building } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from "react";
 
 const plans = [
   {
@@ -57,9 +61,38 @@ const plans = [
 ];
 
 export default function PricingPage() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function handleProCheckout(e: React.MouseEvent) {
+    e.preventDefault();
+    setIsLoading(true);
+  
+    try {
+      const response = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ plan: 'PRO' }),
+      });
+
+      const data = await response.json();
+      
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('Failed to create checkout session:', data.error);
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      <Navbar />
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">Simple, transparent pricing</h1>
@@ -113,17 +146,19 @@ export default function PricingPage() {
                     className="w-full"
                     variant={plan.popular ? 'default' : 'outline'}
                     onClick={handleProCheckout}
+                    disabled={isLoading}
                   >
-                    {plan.cta}
+                    {isLoading ? 'Processing...' : plan.cta}
                   </Button>
                 ) : (
-                  <Button
-                    className="w-full"
-                    variant={plan.popular ? 'default' : 'outline'}
-                    asChild
-                  >
-                    <Link href={plan.ctaLink}>{plan.cta}</Link>
-                  </Button>
+                  <Link href={plan.ctaLink}>
+                    <Button
+                      className="w-full"
+                      variant={plan.popular ? 'default' : 'outline'}
+                    >
+                      {plan.cta}
+                    </Button>
+                  </Link>
                 )}
               </div>
             );
@@ -172,28 +207,4 @@ export default function PricingPage() {
       </div>
     </div>
   );
-}
-
-async function handleProCheckout(e: React.MouseEvent) {
-  e.preventDefault();
-  
-  try {
-    const response = await fetch('/api/stripe/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ plan: 'PRO' }),
-    });
-
-    const data = await response.json();
-    
-    if (data.url) {
-      window.location.href = data.url;
-    } else {
-      console.error('Failed to create checkout session:', data.error);
-    }
-  } catch (error) {
-    console.error('Error during checkout:', error);
-  }
 }
