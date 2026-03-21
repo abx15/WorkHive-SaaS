@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { ROLES } from "@/lib/rbac";
+import { checkCreditLimit, deductCredits } from "@/lib/credit-middleware";
 
 export async function createWorkspace(data: { name: string }) {
   const session = await getServerSession(authOptions);
@@ -23,20 +24,45 @@ export async function createWorkspace(data: { name: string }) {
     throw new Error("User not found");
   }
 
-  const workspace = await db.workspace.create({
-    data: {
-      name: data.name,
-      members: {
-        create: {
-          userId: user.id,
-          role: ROLES.ADMIN,
-        },
-      },
-    },
-  });
+  // Check credit limit
+  const creditCheck = await checkCreditLimit(user.id, "WORKSPACE_CREATE");
+  if (!creditCheck.canProceed) {
+    throw new Error(creditCheck.reason || "Insufficient credits");
+  }
 
-  revalidatePath("/dashboard");
-  return workspace;
+  try {
+    // Create workspace and deduct credits in a transaction
+    const result = await db.$transaction(async (tx) => {
+      const workspace = await tx.workspace.create({
+        data: {
+          name: data.name,
+          members: {
+            create: {
+              userId: user.id,
+              role: ROLES.ADMIN,
+            },
+          },
+        },
+        include: {
+          members: {
+            include: {
+              user: true
+            }
+          }
+        }
+      });
+
+      // Deduct credits
+      await deductCredits(user.id, "WORKSPACE_CREATE", `Created workspace: ${data.name}`);
+
+      return workspace;
+    });
+
+    revalidatePath("/dashboard");
+    return result;
+  } catch (error) {
+    throw new Error("Failed to create workspace");
+  }
 }
 
 export async function getUserWorkspaces() {
