@@ -44,3 +44,8 @@ next-env.d.ts
 login.md
 credentials.md
 secrets.md
+
+# Test files
+test-rbac.js
+lib/test-credits.ts
+lib/tests/
