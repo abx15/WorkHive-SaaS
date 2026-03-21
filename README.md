@@ -288,9 +288,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with passion by [Arun Kumar Bind](https://github.com/abx15)**
 
-📧 **Contact**: arun.kumar.bind@example.com  
-🔗 **LinkedIn**: [linkedin.com/in/arun-kumar-bind](https://linkedin.com/in/arun-kumar-bind)  
-🌐 **Portfolio**: [arunbind.dev](https://arunbind.dev)
+📧 **Contact**: developerarunwork@gmail.com  
+🔗 **LinkedIn**: [https://www.linkedin.com/in/arun-kumar-a3b047353/](https://www.linkedin.com/in/arun-kumar-a3b047353/)  
+🌐 **Portfolio**: [arun15dev.netlify.app](https://arun15dev.netlify.app/)
 
 ---
 
