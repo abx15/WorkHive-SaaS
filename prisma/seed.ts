@@ -12,6 +12,16 @@ async function main() {
       email: 'admin@workhive.com',
       name: 'Admin User',
       password,
+      memberships: {
+        create: {
+          role: 'ADMIN',
+          workspace: {
+            create: {
+              name: 'WorkHive Admin Workspace',
+            },
+          },
+        },
+      },
     },
   })
   console.log('Seeded database with test user:', user)

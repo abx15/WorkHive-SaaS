@@ -49,6 +49,7 @@ model User {
   password      String?
   accounts      Account[]
   sessions      Session[]
+  memberships   Member[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -60,3 +61,32 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+enum Role {
+  ADMIN
+  MANAGER
+  MEMBER
+}
+
+model Workspace {
+  id        String   @id @default(cuid())
+  name      String
+  members   Member[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Member {
+  id          String    @id @default(cuid())
+  role        Role      @default(MEMBER)
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([userId, workspaceId])
+}
+

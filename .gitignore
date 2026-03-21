@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Login details and sensitive documentation
+login.md
+credentials.md
+secrets.md
